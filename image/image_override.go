@@ -28,48 +28,26 @@ import (
 // Clone returns a copy of the current image in a new scope
 // Clone must be used when one want to create a different image
 // from the output of an operation.
-func (image *Image) Clone() *Image {
-	clone := new(Image)
-	clone.Tensor = image.Tensor.Clone()
-	return clone
-}
+func (image *Image) Clone() *Image { _ = "STUB: not implemented"; return nil }
 
 // Cast casts the current image tensor to the requested type
-func (image *Image) Cast(dtype tf.DataType) *Image {
-	image.Tensor = image.Tensor.Cast(dtype)
-	return image
-}
+func (image *Image) Cast(dtype tf.DataType) *Image { _ = "STUB: not implemented"; return nil }
 
 // Add defines the add operation between the image and tfout
 // `tfout` dtype is converted to image.Dtype() before adding
-func (image *Image) Add(tfout tf.Output) *Image {
-	image.Tensor = image.Tensor.Add(tfout)
-	return image
-}
+func (image *Image) Add(tfout tf.Output) *Image { _ = "STUB: not implemented"; return nil }
 
 // Mul defines the multiplication operation between the tensor
 // and `tfout`.
 // `tfout` dtype is converted to tensor.Dtype() before multiplying
-func (image *Image) Mul(tfout tf.Output) *Image {
-	image.Tensor = image.Tensor.Mul(tfout)
-	return image
-}
+func (image *Image) Mul(tfout tf.Output) *Image { _ = "STUB: not implemented"; return nil }
 
 // Pow defines the pow operation x^y, where x are the image values
 // y dtype is converted to image.Dtype() before executing Pow
-func (image *Image) Pow(y tf.Output) *Image {
-	image.Tensor = image.Tensor.Pow(y)
-	return image
-}
+func (image *Image) Pow(y tf.Output) *Image { _ = "STUB: not implemented"; return nil }
 
 // Square defines the square operation for the image values
-func (image *Image) Square() *Image {
-	image.Tensor = image.Tensor.Square()
-	return image
-}
+func (image *Image) Square() *Image { _ = "STUB: not implemented"; return nil }
 
 // Sqrt defines the square root operation for the image values
-func (image *Image) Sqrt() *Image {
-	image.Tensor = image.Tensor.Sqrt()
-	return image
-}
+func (image *Image) Sqrt() *Image { _ = "STUB: not implemented"; return nil }

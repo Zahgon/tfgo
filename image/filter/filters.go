@@ -35,14 +35,10 @@ var (
 // containing the values of the Sobel operator along X
 // Convolving a 2D signal (tensor with shape [height, widht, 1])
 // gives as output the directional derivative along the X axis of the signal
-func SobelX(scope *op.Scope) tf.Output {
-	return op.Const(scope.SubScope("SobelX"), sobelX)
-}
+func SobelX(scope *op.Scope) tf.Output { _ = "STUB: not implemented"; return *new(tf.Output) }
 
 // SobelY returns a constant tensor with shape [3,3,1,1]
 // containing the values of the Sobel operator along Y
 // Convolving a 2D signal (tensor with shape [height, widht, 1])
 // gives as output the directional derivative along the Y axis of the signal
-func SobelY(scope *op.Scope) tf.Output {
-	return op.Const(scope.SubScope("SobelY"), sobelY)
-}
+func SobelY(scope *op.Scope) tf.Output { _ = "STUB: not implemented"; return *new(tf.Output) }

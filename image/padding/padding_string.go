@@ -2,29 +2,15 @@
 
 package padding
 
-import (
-	"fmt"
-)
-
 const _Padding_name = "SAMEVALID"
 
 var _Padding_index = [...]uint8{0, 4, 9}
 
-func (i Padding) String() string {
-	if i < 0 || i >= Padding(len(_Padding_index)-1) {
-		return fmt.Sprintf("Padding(%d)", i)
-	}
-	return _Padding_name[_Padding_index[i]:_Padding_index[i+1]]
-}
+func (i Padding) String() string { _ = "STUB: not implemented"; return "" }
 
 var _PaddingNameToValue_map = map[string]Padding{
 	_Padding_name[0:4]: 0,
 	_Padding_name[4:9]: 1,
 }
 
-func PaddingString(s string) (Padding, error) {
-	if val, ok := _PaddingNameToValue_map[s]; ok {
-		return val, nil
-	}
-	return 0, fmt.Errorf("%s does not belong to Padding values", s)
-}
+func PaddingString(s string) (Padding, error) { _ = "STUB: not implemented"; return *new(Padding), nil }

@@ -14,10 +14,6 @@ limitations under the License.
 package tfgo
 
 import (
-	"fmt"
-	"os"
-	"runtime"
-
 	tf "github.com/galeone/tensorflow/tensorflow/go"
 )
 
@@ -31,71 +27,28 @@ type Model struct {
 // This operation creates a session with specified `options`
 // Panics if the model can't be loaded
 func LoadModel(exportDir string, tags []string, options *tf.SessionOptions) (model *Model) {
-	var err error
-	model = new(Model)
-	model.saved, err = tf.LoadSavedModel(exportDir, tags, options)
-
-	if err != nil {
-		panic(err.Error())
-	}
-
-	runtime.SetFinalizer(model, func(model *Model) {
-		if model.saved != nil && model.saved.Session != nil {
-			_ = model.saved.Session.Close()
-		}
-	})
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ImportModel creates a new *Model, loading the graph from the serialized representation.
 // This operation creates a session with specified `options`
 // Panics if the model can't be loaded
 func ImportModel(serializedModel, prefix string, options *tf.SessionOptions) (model *Model) {
-	model = new(Model)
-	contents, err := os.ReadFile(serializedModel)
-	if err != nil {
-		panic(err.Error())
-	}
-
-	graph := tf.NewGraph()
-	if err := graph.Import(contents, prefix); err != nil {
-		panic(err.Error())
-	}
-
-	session, err := tf.NewSession(graph, options)
-	if err != nil {
-		panic(err.Error())
-	}
-
-	model.saved = &tf.SavedModel{Session: session, Graph: graph}
-	runtime.SetFinalizer(model, func(model *Model) {
-		if model.saved != nil && model.saved.Session != nil {
-			_ = model.saved.Session.Close()
-		}
-	})
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Exec executes the nodes/tensors that must be present in the loaded model
 // feedDict values to feed to placeholders (that must have been saved in the model definition)
 // panics on error
 func (model *Model) Exec(tensors []tf.Output, feedDict map[tf.Output]*tf.Tensor) (results []*tf.Tensor) {
-	var err error
-	if results, err = model.saved.Session.Run(feedDict, tensors, nil); err == nil {
-		return results
-	}
-	panic(err)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Op extracts the output in position idx of the tensor with the specified name from the model graph
 func (model *Model) Op(name string, idx int) tf.Output {
-	op := model.saved.Graph.Operation(name)
-	if op == nil {
-		panic(fmt.Errorf("op %s not found", name))
-	}
-	nout := op.NumOutputs()
-	if nout <= idx {
-		panic(fmt.Errorf("op %s has %d outputs. Requested output number %d", name, nout, idx))
-	}
-	return op.Output(idx)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }

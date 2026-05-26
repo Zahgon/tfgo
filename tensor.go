@@ -32,56 +32,36 @@ type Tensor struct {
 // NewTensor creates a *Tensor from a tf.Output
 // Place the cloned tensor within the specified scope
 func NewTensor(scope *op.Scope, tfout tf.Output) (tensor *Tensor) {
-	tensor = new(Tensor)
-	tensor.Root = scope
-	tensor.Path = NewScope(scope)
-	// Copy the tensor to a new node in the graph
-	tensor.Output = op.Identity(tensor.Path.SubScope("Identity"), tfout)
-	return tensor
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Copy the tensor to a new node in the graph
 
 // Check checks if the previous operation caused an error
 // and thus tensor.Path.Err is not nil.
 // If it's not, panics because we're defining the graph in a wrong way
-func (tensor *Tensor) Check() {
-	err := tensor.Path.Err()
-	if err != nil {
-		panic(err.Error())
-	}
-}
+func (tensor *Tensor) Check() { _ = "STUB: not implemented"; return }
 
 // Scope returns the scope associated to the tensor
 func (tensor *Tensor) Scope() *op.Scope {
-	return tensor.Path
+	_ = "STUB: not implemented"
+
+	// Shape64 returns the shape of the tensor as []int64.
+	// If firstDimension is true a 4 elements slice is returned.
+	// Otherwise a 3 elements slice is returned.
+	return nil
 }
 
-// Shape64 returns the shape of the tensor as []int64.
-// If firstDimension is true a 4 elements slice is returned.
-// Otherwise a 3 elements slice is returned.
-func (tensor *Tensor) Shape64(firstDimension bool) []int64 {
-	dims64, _ := tensor.Output.Shape().ToSlice()
-	if firstDimension {
-		return dims64
-	}
-	return dims64[1:]
-}
+func (tensor *Tensor) Shape64(firstDimension bool) []int64 { _ = "STUB: not implemented"; return nil }
 
 // Shape32 returns the shape of the tensor as []int32.
 // If firstDimension is true a 4 elements slice is returned.
 // Otherwise a 3 elements slice is returned.
-func (tensor *Tensor) Shape32(firstDimension bool) []int32 {
-	dims64 := tensor.Shape64(firstDimension)
-	var dims32 = make([]int32, len(dims64))
-	for idx, dim := range dims64 {
-		dims32[idx] = int32(dim)
-	}
-	return dims32
-}
+func (tensor *Tensor) Shape32(firstDimension bool) []int32 { _ = "STUB: not implemented"; return nil }
 
 // Dtype returns the tensor dtype
-func (tensor *Tensor) Dtype() tf.DataType {
-	return tensor.Output.DataType()
-}
+func (tensor *Tensor) Dtype() tf.DataType { _ = "STUB: not implemented"; return *new(tf.DataType) }
 
 // --------
 // Methods returning *Tensor
@@ -94,65 +74,31 @@ func (tensor *Tensor) Dtype() tf.DataType {
 // from the output of an operation.
 // The new node is placed at the same level of the current tensor
 // it can be seen as a twin tensor
-func (tensor *Tensor) Clone() *Tensor {
-	defer tensor.Check()
-	scope := NewScope(tensor.Root)
-	return NewTensor(scope, tensor.Output)
-}
+func (tensor *Tensor) Clone() *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Cast casts the current tensor to the requested dtype
-func (tensor *Tensor) Cast(dtype tf.DataType) *Tensor {
-	defer tensor.Check()
-	tensor.Output = Cast(tensor.Path, tensor.Output, dtype)
-	return tensor
-}
+func (tensor *Tensor) Cast(dtype tf.DataType) *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Add defines the add operation between the tensor and tfout
 // `tfout` dtype is converted to tensor.Dtype() before adding
-func (tensor *Tensor) Add(tfout tf.Output) *Tensor {
-	defer tensor.Check()
-	s := tensor.Path.SubScope("Add")
-	tensor.Output = op.Add(s, tensor.Output, Cast(s, tfout, tensor.Dtype()))
-	return tensor
-}
+func (tensor *Tensor) Add(tfout tf.Output) *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Mul defines the multiplication operation between the tensor
 // and `tfout`. It's the multiplication element-wise with broadcasting support.
 // `tfout` dtype is converted to tensor.Dtype() before multiplying
-func (tensor *Tensor) Mul(tfout tf.Output) *Tensor {
-	defer tensor.Check()
-	s := tensor.Path.SubScope("Mul")
-	tensor.Output = op.Mul(s, tensor.Output, Cast(s, tfout, tensor.Dtype()))
-	return tensor
-}
+func (tensor *Tensor) Mul(tfout tf.Output) *Tensor { _ = "STUB: not implemented"; return nil }
 
 // MatMul defines the matrix multiplication operation between the tensor
 // and `tfout`.
 // `tfout` dtype is converted to tensor.Dtype() before multiplying
-func (tensor *Tensor) MatMul(tfout tf.Output) *Tensor {
-	defer tensor.Check()
-	s := tensor.Path.SubScope("MatMul")
-	tensor.Output = op.MatMul(s, tensor.Output, Cast(s, tfout, tensor.Dtype()))
-	return tensor
-}
+func (tensor *Tensor) MatMul(tfout tf.Output) *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Pow defines the pow operation x^y, where x are the tensor values
 // y dtype is converted to tensor.Dtype() before executing Pow
-func (tensor *Tensor) Pow(y tf.Output) *Tensor {
-	defer tensor.Check()
-	s := tensor.Path.SubScope("Pow")
-	tensor.Output = op.Pow(s, tensor.Output, Cast(s, y, tensor.Dtype()))
-	return tensor
-}
+func (tensor *Tensor) Pow(y tf.Output) *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Square defines the square operation for the tensor values
-func (tensor *Tensor) Square() *Tensor {
-	defer tensor.Check()
-	return tensor.Pow(op.Const(tensor.Path.SubScope("y"), 2.))
-}
+func (tensor *Tensor) Square() *Tensor { _ = "STUB: not implemented"; return nil }
 
 // Sqrt defines the square root operation for the tensor values
-func (tensor *Tensor) Sqrt() *Tensor {
-	defer tensor.Check()
-	return tensor.Pow(op.Const(tensor.Path.SubScope("y"), 0.5))
-}
+func (tensor *Tensor) Sqrt() *Tensor { _ = "STUB: not implemented"; return nil }

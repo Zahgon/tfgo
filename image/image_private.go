@@ -14,36 +14,21 @@ limitations under the License.
 package image
 
 import (
-	"fmt"
-
 	tf "github.com/galeone/tensorflow/tensorflow/go"
 	"github.com/galeone/tensorflow/tensorflow/go/op"
-	tg "github.com/galeone/tfgo"
 )
 
 func boxes2batch(scope *op.Scope, boxes []Box) tf.Output {
-	s := scope.SubScope("boxes2batch")
-	var tfboxes []tf.Output
-	for idx, box := range boxes {
-		tfboxes = append(tfboxes, op.Const(s.SubScope(fmt.Sprint("idx_", idx)), []float32{box.Start.Y, box.Start.X, box.End.Y, box.End.X}))
-	}
-	return tg.Batchify(s, tfboxes)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
 
 func sizes2batch(scope *op.Scope, sizes []Size) tf.Output {
-	s := scope.SubScope("sizes2batch")
-	var tfsizes []tf.Output
-	for idx, size := range sizes {
-		tfsizes = append(tfsizes, op.Const(s.SubScope(fmt.Sprint("idx_", idx)), []float32{size.Height, size.Width}))
-	}
-	return tg.Batchify(s, tfsizes)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
 
 func points2batch(scope *op.Scope, points []Point) tf.Output {
-	s := scope.SubScope("points2batch")
-	var tfpoints []tf.Output
-	for idx, point := range points {
-		tfpoints = append(tfpoints, op.Const(s.SubScope(fmt.Sprint("idx_", idx)), []float32{point.X, point.Y}))
-	}
-	return tg.Batchify(s, tfpoints)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }

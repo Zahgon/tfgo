@@ -26,34 +26,25 @@ import (
 
 // Batchify creates a batch of tensors, concatenating them along the first dimension
 func Batchify(scope *op.Scope, tensors []tf.Output) tf.Output {
-	s := scope.SubScope("batchify")
-	// Batchify a single value, means add batch dimension and return
-	if len(tensors) == 1 {
-		return op.ExpandDims(s.SubScope("ExpandDims"), tensors[0], op.Const(s.SubScope("axis"), []int32{0}))
-	}
-	var tensors4d []tf.Output
-	for _, tensor := range tensors {
-		tensors4d = append(tensors4d, op.ExpandDims(s.SubScope("ExpandDims"), tensor, op.Const(s.SubScope("axis"), []int32{0})))
-	}
-	return op.ConcatV2(s.SubScope("ConcatV2"), tensors4d, op.Const(s.SubScope("axis"), int32(0)))
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
+
+// Batchify a single value, means add batch dimension and return
 
 // Cast casts value to the specified dtype
 func Cast(scope *op.Scope, value tf.Output, dtype tf.DataType) tf.Output {
-	if value.DataType() == dtype {
-		return value
-	}
-	return op.Cast(scope.SubScope("Cast"), value, dtype)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
 
 // NewRoot creates a new *op.Scope, empty
-func NewRoot() *op.Scope {
-	return op.NewScope()
-}
+func NewRoot() *op.Scope { _ = "STUB: not implemented"; return nil }
 
 // Const creates a constant value within the specified scope
 func Const(scope *op.Scope, value interface{}) tf.Output {
-	return op.Const(scope.SubScope("Const"), value)
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
 
 // IsClose defines the isclose operation between a and b.
@@ -61,13 +52,8 @@ func Const(scope *op.Scope, value interface{}) tf.Output {
 // relTol is the relative tolerance
 // absTol is the absolute tolerance
 func IsClose(scope *op.Scope, a, b tf.Output, relTol, absTol tf.Output) tf.Output {
-	s := scope.SubScope("IsClose")
-	return op.LessEqual(s.SubScope("LessEqual"),
-		op.Abs(s.SubScope("Abs"),
-			op.Sub(s.SubScope("Sub"), a, b)),
-		op.Maximum(s.SubScope("Maximum"),
-			op.Mul(s.SubScope("Mul"), relTol,
-				op.Maximum(s.SubScope("Maximum"), op.Abs(s.SubScope("Abs"), a), op.Abs(s.SubScope("Abs"), b))), absTol))
+	_ = "STUB: not implemented"
+	return *new(tf.Output)
 }
 
 // Exec creates the computation graph from the scope, then executes
@@ -76,19 +62,6 @@ func IsClose(scope *op.Scope, a, b tf.Output, relTol, absTol tf.Output) tf.Outpu
 // The session options can be specified using the session parameter.
 // Returns the evaluated tensors. Panics on error.
 func Exec(scope *op.Scope, tensors []tf.Output, feedDict map[tf.Output]*tf.Tensor, options *tf.SessionOptions) []*tf.Tensor {
-	graph, err := scope.Finalize()
-	if err != nil {
-		panic(err.Error())
-	}
-	var sess *tf.Session
-
-	sess, err = tf.NewSession(graph, options)
-	if err == nil {
-		defer sess.Close()
-		var results []*tf.Tensor
-		if results, err = sess.Run(feedDict, tensors, nil); err == nil {
-			return results
-		}
-	}
-	panic(err)
+	_ = "STUB: not implemented"
+	return nil
 }

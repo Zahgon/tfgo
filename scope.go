@@ -14,9 +14,6 @@ limitations under the License.
 package tfgo
 
 import (
-	"fmt"
-	"sync/atomic"
-
 	"github.com/galeone/tensorflow/tensorflow/go/op"
 )
 
@@ -25,7 +22,4 @@ var tensorCounter uint64
 // NewScope returns a unique scope in the format
 // input_<suffix> where suffix is a counter
 // This function isthread safe can be called in parallel for DIFFERENT scopes.
-func NewScope(root *op.Scope) *op.Scope {
-	var scope = atomic.AddUint64(&tensorCounter, 1)
-	return root.SubScope(fmt.Sprint("input_", scope))
-}
+func NewScope(root *op.Scope) *op.Scope { _ = "STUB: not implemented"; return nil }
